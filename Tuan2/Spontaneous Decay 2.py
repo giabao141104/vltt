@@ -43,6 +43,15 @@ plt.legend()
 plt.grid(True, linestyle=':', alpha=0.7)
 plt.show()
 
+data_to_save = np.zeros((thoi_gian_max, len(danh_sach_N0) + 1))
+data_to_save[:, 0] = np.arange(thoi_gian_max)
+for i, n0 in enumerate(danh_sach_N0):
+    hien_tai = n0
+    for t in range(thoi_gian_max):
+        data_to_save[t, i + 1] = hien_tai
+        hat_phan_ra = np.random.binomial(int(hien_tai), lambda_hang_so) 
+        hien_tai -= hat_phan_ra
 
-
-
+header_str = "Time " + " ".join([f"N0_{x}" for x in danh_sach_N0])
+np.savetxt("ket_qua_tong_hop.dat", data_to_save, header=header_str, comments='')
+print("Đã xuất file: ket_qua_tong_hop.dat")

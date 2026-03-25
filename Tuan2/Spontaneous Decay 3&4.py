@@ -71,3 +71,17 @@ plt.grid(True, linestyle='--')
 plt.plot(ln_n, ln_n + np.log(0.005), color='black', linestyle='--', label='Ly thuyet (Slope=1)')
 plt.legend()
 plt.show()
+
+for n0 in n0_list:
+    t, n, dn = mo_phong(n0, lam)
+    data = np.column_stack((t, n))
+    np.savetxt(f"data_3a_N0_{n0}.dat", data, header="t N", comments='')
+
+for l in lambda_list:
+    t, n, dn = mo_phong(n0_fixed, l)
+    data = np.column_stack((t, n))
+    np.savetxt(f"data_3b_lambda_{l}.dat", data, header="t N", comments='')
+
+data4 = np.column_stack((ln_n, ln_dn))
+np.savetxt("data_4_lnN_lnDN.dat", data4, header="lnN lnDN", comments='')
+print("Da xuat file .dat xong!")
