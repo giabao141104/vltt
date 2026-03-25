@@ -83,10 +83,9 @@ ax2.set_ylabel(r"$R$")
 ax2.legend()
 
 plt.tight_layout()
-plt.show()
-plt.close()
+plt.savefig("images/3d.png", dpi=300)
 
-with open("walks_3D.dat", "w") as f:
+with open("data/3d-steps.dat", "w") as f:
     for _ in range(7):
         x, y, z = 0.0, 0.0, 0.0
         f.write(f"{x} {y} {z}\n")
@@ -98,4 +97,4 @@ with open("walks_3D.dat", "w") as f:
         f.write("\n\n")
 
 data_b = np.column_stack((sqrt_N_vals, rw_results))
-np.savetxt("rw_3D.dat", data_b)
+np.savetxt("data/3d-distance.dat", data_b, header="sqrtN R")

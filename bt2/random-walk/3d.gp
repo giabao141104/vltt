@@ -1,5 +1,6 @@
 reset
-set terminal windows size 1100, 500 font "Serif,10"
+set terminal pngcairo size 800,400
+set output "images/3d-gnuplot.png"
 set multiplot layout 1, 2 title "Random Walk 3D"
 
 set title "7 Random Walks (3D Paths)"
@@ -24,13 +25,13 @@ set zlabel "Z"
 
 set grid lc "gray" lt 1 lw 0.2
 
-splot "walks_3D.dat" i 0 w l lw 1.2 notitle, \
-      "walks_3D.dat" i 1 w l lw 1.2 notitle, \
-      "walks_3D.dat" i 2 w l lw 1.2 notitle, \
-      "walks_3D.dat" i 3 w l lw 1.2 notitle, \
-      "walks_3D.dat" i 4 w l lw 1.2 notitle, \
-      "walks_3D.dat" i 5 w l lw 1.2 notitle, \
-      "walks_3D.dat" i 6 w l lw 1.2 notitle
+splot "data/3d-steps.dat" i 0 w l lw 1.2 notitle, \
+      "data/3d-steps.dat" i 1 w l lw 1.2 notitle, \
+      "data/3d-steps.dat" i 2 w l lw 1.2 notitle, \
+      "data/3d-steps.dat" i 3 w l lw 1.2 notitle, \
+      "data/3d-steps.dat" i 4 w l lw 1.2 notitle, \
+      "data/3d-steps.dat" i 5 w l lw 1.2 notitle, \
+      "data/3d-steps.dat" i 6 w l lw 1.2 notitle
 
 set title "Distance R vs sqrt(N)"
 set size square
@@ -45,8 +46,7 @@ set grid lc "gray" lt 1 lw 0.2
 set key left top
 set key spacing 1.2
 
-plot "rw_3D.dat" u 1:2 w l lc "red" lw 1.5 title "Simulation", \
-     x w l lc "blue" lw 3 title "Theory" alpha 0.5
+plot "data/3d-distance.dat" u 1:2 w l lc "red" lw 1.5 title "Simulation", \
+     x w l lc "blue" lw 3 title "Theory"
 
 unset multiplot
-pause mouse close

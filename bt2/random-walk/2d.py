@@ -75,9 +75,9 @@ ax2.set_aspect('equal')
 ax2.legend()
 
 plt.tight_layout()
-plt.show()
+plt.savefig("images/2d.png", dpi=300)
 
-with open("random_walk_2D.dat", "w") as f:
+with open("data/2d-steps.dat", "w") as f:
     for _ in range(7):
         x, y = 0.0, 0.0
         f.write(f"{x} {y}\n")
@@ -90,4 +90,4 @@ with open("random_walk_2D.dat", "w") as f:
         f.write("\n\n")
 
 data_b = np.column_stack((sqrt_N_vals, rw_results))
-np.savetxt("rw_2D.dat", data_b, header="sqrtN R")
+np.savetxt("data/2d-distance.dat", data_b, header="sqrtN R")
