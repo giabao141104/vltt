@@ -33,8 +33,8 @@ def random_walk_2D(n_values):
         if N == n_values[-1]:
             term_xx = (np.mean(x_final**2) - np.mean(np.sum(dx**2, axis=1))) / r2_mean
             term_xy = np.mean(x_final * y_final) / r2_mean
-            print(f"Same-axis correlation <Δxi.Δxj>/R2: {term_xx:.6f}")
-            print(f"Cross-axis correlation <Δxi.Δyj>/R2: {term_xy:.6f}")
+            print(f"Same-axis correlation: {term_xx:.6f}")
+            print(f"Cross-axis correlation: {term_xy:.6f}")
     return rw_results
 
 N_max = 90000 

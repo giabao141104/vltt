@@ -33,25 +33,9 @@ plt.ylabel('Gia tri Logarit')
 plt.title('Do thi Logarit cua so hat va toc do phan ra')
 plt.legend()
 plt.grid(True)
-plt.show()
+plt.savefig("images/1.png", dpi=300)
 
 # Xuất dữ liệu ra file
-data_file = "phong_xa_data.dat"
+data_file = "data/phong_xa_data.dat"
 data_to_save = np.column_stack((thoi_gian, so_hat_con_lai, toc_do_phan_ra))
 np.savetxt(data_file, data_to_save, header="Thoi_gian N_t Toc_do", comments='')
-
-# Tạo file script cho gnuplot
-gnuplot_script = "plot_script.gp"
-with open(gnuplot_script, "w") as f:
-    f.write(f"""
-set title "Do thi Logarit cua so hat va toc do phan ra (Gnuplot)"
-set xlabel "Thoi gian (t)"
-set ylabel "Gia tri Logarit"
-set grid
-set key outside
-
-plot "{data_file}" u 1:(log($2)) with lines title "ln(N(t))" lw 2, \\
-     "{data_file}" u 1:(log($3 + 1e-9)) with lines title "ln(Delta N / Delta t)" lw 1.5
-    """)
-print(f"Da xuat file du lieu: {data_file}")
-print(f"Da tao script gnuplot: {gnuplot_script}")

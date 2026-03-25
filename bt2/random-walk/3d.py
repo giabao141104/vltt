@@ -39,10 +39,10 @@ def random_walk_3D(n_values):
             term_xz = np.mean(x_final * z_final) / r2_mean
             term_yz = np.mean(y_final * z_final) / r2_mean
             
-            print(f"Same-axis correlation <Δxi.Δxj>/R2 : {term_xx:.6f}")
-            print(f"Cross-axis correlation <Δxi.Δyj>/R2 : {term_xy:.6f}")
-            print(f"Cross-axis correlation <Δxi.Δzj>/R2 : {term_xz:.6f}")
-            print(f"Cross-axis correlation <Δyi.Δzj>/R2 : {term_yz:.6f}")
+            print(f"Same-axis correlation: {term_xx:.6f}")
+            print(f"Cross-axis correlation: {term_xy:.6f}")
+            print(f"Cross-axis correlation: {term_xz:.6f}")
+            print(f"Cross-axis correlation: {term_yz:.6f}")
             
     return rw_results
 

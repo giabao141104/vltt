@@ -1,0 +1,206 @@
+\documentclass{article}
+
+\usepackage[T5]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+
+\usepackage[
+left = 1cm, 
+right = 1cm,
+bottom = 2cm,
+top = 2cm,
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{siunitx}
+
+\usepackage{tabularx}
+\usepackage{makecell}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+\usepackage{xcolor}
+\definecolor{seagreen}{rgb}{0.18, 0.55, 0.34}
+\usepackage{minted}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{minted}
+% \setminted{bgcolor=gray!20}
+\newtcbinputlisting{\inputcode}[3]{
+  listing engine=minted,
+  minted language=#1,
+  minted options={
+    breaklines, 
+    fontsize=\small, 
+    fontfamily=tt,
+    linenos, 
+    numbersep=3mm
+  },
+  listing file={#2},
+  title={File: #3},
+  colback=gray!10,
+  colframe=seagreen,
+  left=6mm,
+  sharp corners,
+  drop shadow,
+  enhanced,
+  listing only,
+  breakable
+}
+
+\title{Bài tập nhóm lần 2\\
+  Môn Vật lý tính toán}
+\author{Nhóm 8}
+\date{\today}
+
+\usepackage{csvsimple}
+
+\begin{document}
+\maketitle
+
+Danh sách sinh viên thực hiện
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|}
+      \hline
+      \textbf{STT} & \textbf{MSSV} & \textbf{Họ và tên} \\ \hline
+      \csvreader[
+      column names={index=\idx, number=\mssv, name=\fullname},
+      late after line=\\ \hline
+      ]{../thanhvien.txt}{}{\idx & \mssv & \fullname}
+    \end{tabular}
+\end{table}
+
+\tableofcontents
+
+\section{Bài toán random walk}
+
+\inputcode{python}{random-walk/2d.py}{2d.py}
+\inputcode{python}{random-walk/2d.gp}{2d.gp}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{random-walk/images/2d.png}
+        \caption{Vẽ với \texttt{python matplotlib}}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{random-walk/images/2d-gnuplot.png}
+        \caption{Vẽ với \texttt{gnuplot}}
+    \end{subfigure}
+\end{figure}
+
+\inputcode{python}{random-walk/2d.py}{2d.py}
+\inputcode{python}{random-walk/2d.gp}{2d.gp}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{random-walk/images/3d.png}
+        \caption{Vẽ với \texttt{python matplotlib}}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{random-walk/images/3d-gnuplot.png}
+        \caption{Vẽ với \texttt{gnuplot}}
+    \end{subfigure}
+\end{figure}
+
+\section{Bài toán spontaneous decay}
+
+\subsection{Yêu cầu 1}
+Plot the logarithm of the number left \(\ln N(t)\) and the logarithm of the decay rate \(\ln \Delta N(t)/\Delta t (=1)\) vs. time. Note that the simulation measures time in steps of \(\Delta t\) (generation number).
+\inputcode{python}{decay/1.py}{1.py}
+\inputcode{python}{decay/1.gp}{1.gp}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{decay/images/1.png}
+        \caption{Vẽ với \texttt{python matplotlib}}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{decay/images/1-gnuplot.png}
+        \caption{Vẽ với \texttt{gnuplot}}
+    \end{subfigure}
+\end{figure}
+
+\subsection{Yêu cầu 2}
+Check that you obtain what looks like the exponential decay when you start with large values for \(N(0)\), but that the decay displays its stochastic nature for small \(N(0)\). (Large \(N(0)\) values are also stochastic; they just do not look like it.)
+\inputcode{python}{decay/2.py}{2.py}
+\inputcode{python}{decay/2.gp}{2.gp}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{decay/images/2.png}
+        \caption{Vẽ với \texttt{python matplotlib}}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{decay/images/2-gnuplot.png}
+        \caption{Vẽ với \texttt{gnuplot}}
+    \end{subfigure}
+\end{figure}
+
+\subsection{Yêu cầu 3+4}
+Create two plots, one showing that the slopes of \(N(t)\) vs. \(t\) are independent of \(N(0)\) and another showing that the slopes are proportional to the value chosen for \(\lambda\). Create a plot showing that within the expected statistical variations, ln \(N(t)\) and ln \(\Delta N(t)\) are proportional.
+\inputcode{python}{decay/3-4.py}{3-4.py}
+\inputcode{python}{decay/3a.gp}{3a.gp}
+\inputcode{python}{decay/3b.gp}{3b.gp}
+\inputcode{python}{decay/4.gp}{3b.gp}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{decay/images/3.png}
+        \caption{Vẽ với \texttt{python matplotlib}}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=0.45\linewidth]{decay/images/3a-gnuplot.png}
+        \includegraphics[width=0.45\linewidth]{decay/images/3b-gnuplot.png}
+        \caption{Vẽ với \texttt{gnuplot}}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{decay/images/4.png}
+        \caption{Vẽ với \texttt{python matplotlib}}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{decay/images/4-gnuplot.png}
+        \caption{Vẽ với \texttt{gnuplot}}
+    \end{subfigure}
+\end{figure}
+
+\subsection{Yêu cầu 5+6}
+
+\begin{itemize}
+\item Explain in your own words how a process that is spontaneous and random at its very heart can lead to the exponential decay.
+
+    Quá trình phân rã là ngẫu nhiên những vẫn tuân theo quy luật hàm mũ là do ở cấp độ vĩ mô, số lượng hạt phân rã trong một khoảng thời gian luôn tỉ lệ thuận với tổng số hạt hiện có \(dN/dt=-\lambda N\), tạo ra một vòng lặp khiến tốc độ giảm dần theo thời gian.
+\item How does your simulation show that the decay is exponential-like and not a power law such as \(N = \beta t^{-alpha}\)
+
+    Kết quả mô phỏng cho thấy sự phân rã tuân theo hàm mũ chứ không phải hàm lũy thừa là vì khi lấy logarit tự nhiên, đồ thị \(\ln(N)\) theo thời gian \(t\) là một đường thẳng hoàn hảo, khớp với phương trình \(\ln(N) = \ln(N0) - \lambda t\). Ngược lại, nếu là hàm lũy thừa, đồ thị chỉ có thể trở thành đường thẳng nếu cả hai trục đều ở dạng log.
+\end{itemize}
+
+\section{Đánh giá teamwork}
+
+\end{document}

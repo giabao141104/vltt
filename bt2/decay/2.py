@@ -41,7 +41,7 @@ plt.xlabel('Thoi gian (t)')
 plt.ylabel('log10[N(t)]')
 plt.legend()
 plt.grid(True, linestyle=':', alpha=0.7)
-plt.show()
+plt.savefig("images/2.png", dpi=300)
 
 data_to_save = np.zeros((thoi_gian_max, len(danh_sach_N0) + 1))
 data_to_save[:, 0] = np.arange(thoi_gian_max)
@@ -53,5 +53,4 @@ for i, n0 in enumerate(danh_sach_N0):
         hien_tai -= hat_phan_ra
 
 header_str = "Time " + " ".join([f"N0_{x}" for x in danh_sach_N0])
-np.savetxt("ket_qua_tong_hop.dat", data_to_save, header=header_str, comments='')
-print("Đã xuất file: ket_qua_tong_hop.dat")
+np.savetxt("data/ket_qua_tong_hop.dat", data_to_save, header=header_str, comments='')
