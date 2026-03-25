@@ -76,3 +76,18 @@ ax2.legend()
 
 plt.tight_layout()
 plt.show()
+
+with open("random_walk_2D.dat", "w") as f:
+    for _ in range(7):
+        x, y = 0.0, 0.0
+        f.write(f"{x} {y}\n")
+        for _ in range(1000):
+            dx_p, dy_p = random.uniform(-1, 1), random.uniform(-1, 1)
+            dist = np.sqrt(dx_p**2 + dy_p**2)
+            x += dx_p/dist
+            y += dy_p/dist
+            f.write(f"{x} {y}\n")
+        f.write("\n\n")
+
+data_b = np.column_stack((sqrt_N_vals, rw_results))
+np.savetxt("rw_2D.dat", data_b, header="sqrtN R")

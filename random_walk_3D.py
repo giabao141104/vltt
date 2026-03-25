@@ -84,3 +84,18 @@ ax2.legend()
 
 plt.tight_layout()
 plt.show()
+plt.close()
+
+with open("walks_3D.dat", "w") as f:
+    for _ in range(7):
+        x, y, z = 0.0, 0.0, 0.0
+        f.write(f"{x} {y} {z}\n")
+        for _ in range(1000):
+            dx_p, dy_p, dz_p = random.uniform(-1, 1), random.uniform(-1, 1), random.uniform(-1, 1)
+            dist = np.sqrt(dx_p**2 + dy_p**2 + dz_p**2)
+            x += dx_p/dist; y += dy_p/dist; z += dz_p/dist
+            f.write(f"{x:.4f} {y:.4f} {z:.4f}\n")
+        f.write("\n\n")
+
+data_b = np.column_stack((sqrt_N_vals, rw_results))
+np.savetxt("rw_3D.dat", data_b)
