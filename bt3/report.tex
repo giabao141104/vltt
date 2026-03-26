@@ -1,0 +1,78 @@
+\documentclass{article}
+
+\usepackage[T5]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+
+\usepackage[
+left = 1cm, 
+right = 1cm,
+bottom = 2cm,
+top = 2cm,
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{siunitx}
+
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{multirow}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+\usepackage{xcolor}
+\definecolor{seagreen}{rgb}{0.18, 0.55, 0.34}
+\usepackage{minted}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{minted}
+% \setminted{bgcolor=gray!20}
+\newtcbinputlisting{\inputcode}[3]{
+  listing engine=minted,
+  minted language=#1,
+  minted options={
+    breaklines, 
+    fontsize=\small, 
+    fontfamily=tt,
+    linenos, 
+    numbersep=3mm
+  },
+  listing file={#2},
+  title={File: #3},
+  colback=gray!10,
+  colframe=seagreen,
+  left=6mm,
+  sharp corners,
+  drop shadow,
+  enhanced,
+  listing only,
+  breakable
+}
+
+\title{Bài tập nhóm lần 3\\
+  Môn Vật lý tính toán}
+\author{Nhóm 8}
+\date{\today}
+
+\usepackage{csvsimple}
+
+\begin{document}
+\maketitle
+
+Danh sách sinh viên thực hiện
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|}
+      \hline
+      \textbf{STT} & \textbf{MSSV} & \textbf{Họ và tên} \\ \hline
+      \csvreader[
+      column names={index=\idx, number=\mssv, name=\fullname},
+      late after line=\\ \hline
+      ]{../thanhvien.txt}{}{\idx & \mssv & \fullname}
+    \end{tabular}
+\end{table}
+
+\tableofcontents
+
+\end{document}
