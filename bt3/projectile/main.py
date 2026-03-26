@@ -1,6 +1,6 @@
 import numpy as np
 
-def rk4(fp,filenames,a,b,N,alpha):
+def RK4(fp,filenames,a,b,N,alpha):
     h = (b - a)/N
     x = a
     y = np.array(alpha)
