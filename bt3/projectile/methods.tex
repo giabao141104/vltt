@@ -1,0 +1,76 @@
+\subsection{Mô hình lực cản không khí}
+
+Theo định luật II Newton, phương trình chuyển động của chất điểm dưới tác dụng của trọng lực và lực cản môi trường có dạng
+\begin{equation}
+\label{eqn:force}
+m\frac{\mathrm{d}^2\mathbf{x}}{\mathrm{d}t} = \mathbf{f}_d - mg\mathbf{e}_y
+\end{equation}
+nghiên cứu này khảo sát mô hình lực cản không khí \(\mathbf{f}_d\) phụ thuộc vào vận tốc như sau
+\begin{equation}
+\mathbf{f}_d = -km |\mathbf{v}|^n \frac{\mathbf{v}}{|\mathbf{v}|}
+\end{equation}
+với \(|\mathbf{v}| = \sqrt{v_x^2 + v_y^2}\) là độ lớn của vận tốc, thành phần \(-\frac{\mathbf{v}}{|\mathbf{v}|}\) là vector đơn vị hướng ngược chiều với hướng chuyển động của chất điểm và hệ số cản \(k\) (không đơn vị).
+
+\subsection{Thiết lập hệ phương trình vi phân}
+
+Giải phương trình \eqref{eqn:force} trong hệ tọa độ \(Oxy\), hệ phương trình vi phân sau mô tả chuyển động của chất điểm
+\begin{equation}
+  \label{eqn:soe}
+  \begin{cases}
+    \dfrac{\mathrm{d}v_x}{\mathrm{d}t} &= -k(v_x^2 + v_y^2)^{(n - 1)/2} v_x \\[1em]
+    \dfrac{\mathrm{d}v_y}{\mathrm{d}t} &= -g - k(v_x^2 + v_y^2)^{(n - 1)/2} v_y
+  \end{cases}
+\end{equation}
+
+\subsection{Phương pháp Runge--Kutta bậc 4}
+
+Việc giải hệ \eqref{eqn:soe} một cách giải tích là không đơn giản, vì vậy chúng tôi sử dụng phương pháp giải tích số Runge--Kutta bậc 4 (RK4) để xấp xỉ nghiệm của bài toán. Để sử dụng RK4, đưa các thông số mô tả trạng thái của hệ tại một thời điểm thành một ma trận \(\mathbf{U}\)
+\begin{equation}
+  \mathbf{U}(t) \equiv \begin{pmatrix}
+    x \\
+    y \\
+    v_x \\
+    v_y
+  \end{pmatrix}
+\end{equation}
+như vậy hệ \eqref{eqn:soe} được đưa về dạng \(\mathbf{f} = \mathrm{d}\mathbf{U}/\mathrm{d}t\) như sau
+\begin{equation}
+  \mathbf{f}(t) = \begin{pmatrix}
+    y_1 \\
+    y_2 \\
+    -k(y_1^2 + y_2^2)^{(n - 1)/2} y_1 \\
+    -g - k(y_1^2 + y_2^2)^{(n - 1)/2} y_2
+  \end{pmatrix}
+\end{equation}
+
+Quá trình tính toán được lập trình bằng Python để lặp qua các bước thời gian với bước nhảy $h$ được tinh chỉnh nhằm đảm bảo sai số tích lũy ở mức tối thiểu. Tại mỗi vòng lặp, thuật toán RK4 tính toán 4 giá trị độ dốc trung gian ($k_1, k_2, k_3, k_4$) để đánh giá sự thay đổi của vector trạng thái, từ đó cập nhật tọa độ và vận tốc mới. Vòng lặp sẽ được chạy tới thời gian cần thiết để thể hiện đầy đủ quỹ đạo chuyển động và tiện lợi cho việc so sánh giữa các điều kiện ban đầu. Thuật toán RK4 được thể hiện Thuật toán~\ref{alg:rk4}
+
+\begin{algorithm}
+\SetAlgoLined
+\KwIn{Hàm \(\mathbf{f}(t, \mathbf{U}) = \mathrm{d}\mathbf{U}/\mathrm{d}t\),
+  thời điểm bắt đầu \(t_i\),
+  thời điểm kết thúc \(t_f\),
+  điều kiện ban đầu \(\mathbf{U}_0 = (x,y,v_x,v_y)^{\top}\),
+  số bước lặp \(N\)}
+\KwOut{Mảng \(\mathbf{R}\) chứa giá trị ở mỗi bước lặp}
+\(h \leftarrow (b - a) / N\)\;
+\(t \leftarrow a\)\;
+\(\mathbf{U} \leftarrow \mathbf{U}_0\)\;
+\(\mathbf{R}(0) \leftarrow \mathbf{U}\)\;
+\For{\(i \leftarrow 1\) \KwTo \(N\)}{
+  \(\mathbf{k}_1 \leftarrow h \cdot \mathbf{f}(t, \mathbf{U})\)\;
+  \(\mathbf{k}_2 \leftarrow h \cdot \mathbf{f}(t + h/2, \mathbf{U} + \mathbf{k}_1/2)\)\;
+  \(\mathbf{k}_3 \leftarrow h \cdot \mathbf{f}(t + h/2, \mathbf{U} + \mathbf{k}_2/2\)\;
+  \(\mathbf{k}_4 \leftarrow h \cdot \mathbf{f}(t + h, \mathbf{U} + \mathbf{k}_3)\)\;
+  \(\mathbf{U} \leftarrow \mathbf{U} + \frac{1}{6}(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4)\)\;
+  \(t \leftarrow t + h\)\;
+  \(\mathbf{R}(i) \leftarrow \mathbf{U}\)\;
+}
+\Return{\textbf{R}}\;
+\caption{Phương pháp Runge--Kutta bậc 4}\label{alg:rk4}
+\end{algorithm}
+
+\subsection{Lựa chọn tham số mô phỏng}
+
+Nghiên cứu tiến hành mô phỏng chuyển động của đạn pháo với vận tốc khởi điểm được thiết lập ở mức \qty{50}{\meter\per\second}. Khảo sát được thực hiện ở ba góc bắn nghiêng khác nhau: \qty{30}{\degree}, \qty{45}{\degree}, \qty{60}{\degree}.
+Để phân tích toàn diện ảnh hưởng của môi trường, hệ số lực cản được giả định cố định tại \(k = 0.8\). Bài toán tập trung vào việc thay đổi bậc lũy thừa \(n\) của vận tốc, vận tốc ban đầu \(v_0\) và góc ném \(\theta_0\), đại diện cho các điều kiện ban đầu khác nhau. Bên cạnh đó, mô hình lý tưởng bỏ qua hoàn toàn lực cản ($k = 0$) cũng được tính toán song song để làm chuẩn kiểm chứng đối chiếu với lời giải giải tích truyền thống.

@@ -1,0 +1,119 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 2.0 (February 7, 2023)
+%
+% This template originates from:
+% https://www.LaTeXTemplates.com
+%
+% Author:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+% NOTE: The bibliography needs to be compiled using the biber engine.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+	a4paper,
+	10pt,
+	unnumberedsections,
+	twoside,
+]{LTJournalArticle}
+
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{algorithm2e}
+
+\addbibresource{bibliography.bib}
+
+\runninghead{Shortened Running Article Title}
+
+\footertext{\textit{Journal of Biological Sampling} (2024) 12:533-684}
+
+\setcounter{page}{1}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{Mô phỏng quỹ đạo đạn pháo\\
+  dưới tác động của lực cản phi tuyến\\
+  bằng thuật toán Runge--Kutta bậc 4}
+
+\author{
+	Trần Đại Gia Bảo\textsuperscript{1},
+  Đặng Thị Mai Loan\textsuperscript{1},
+  Lê Thị Linh Nhi\textsuperscript{1},\\
+  Lương Thị Phương Trang\textsuperscript{1},
+  Mai Thị Thanh Trúc\textsuperscript{1}
+}
+
+% Affiliations are output in the \date{} command
+\date{\footnotesize\textsuperscript{\textbf{1}}Khoa Vật lý -- Vật lý kỹ thuật, Trường Đại học Khoa học Tự nhiên, Đại học Quốc gia Thành phố Hồ Chí Minh}
+
+% Full-width abstract
+\renewcommand{\maketitlehookd}{%
+	\begin{abstract}
+      \noindent Nghiên cứu này khảo sát quỹ đạo ném xiên của bài toán đạn pháo trong hai điều kiện lý tưởng và điều kiện có lực cản phi tuyến. Hệ phương trình vi phân cho chuyển động được xây dựng và giải bằng phương pháp giải tích số Runge--Kutta bậc 4. Kết quả mô phỏng cho thấy lực cản không khí làm thay đổi đáng kể quỹ đạo so với mô hình lý tưởng, đặc biệt khi xét các giá trị vận tốc và ảnh hưởng của môi trường khác nhau. Những kết quả này cung cấp mô tả chính xác hơn về chuyển động ném xiên trong thực tế và có thể áp dụng cho các mô hình vật lý tương tự.
+	\end{abstract}
+  {
+    \small\textbf{\textit{Từ khóa:}}
+    bài toán đạn pháo,
+    chuyển động ném xiên,
+    lực cản không khí,
+    lực cản phi tuyến,
+    Runge--Kutta 4
+  }
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Giới thiệu}
+\input{introduction}
+
+%------------------------------------------------
+
+\section{Phương pháp}
+\input{methods}
+%------------------------------------------------
+
+\section{Kết quả}
+\input{results}
+
+%------------------------------------------------
+
+\section{Thảo luận}
+\input{discussion}
+
+%------------------------------------------------
+
+\section{Kết luận}
+\input{conclusion}
+
+%----------------------------------------------------------------------------------------
+%	 REFERENCES
+%----------------------------------------------------------------------------------------
+
+\nocite{*}
+\printbibliography
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
