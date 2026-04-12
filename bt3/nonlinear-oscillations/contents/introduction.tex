@@ -1,0 +1,22 @@
+Dao động là một trong những hiện tượng cơ bản và phổ biến nhất trong vật lý, xuất hiện trong nhiều hệ từ cơ học cổ điển đến vật lý hiện đại. Trong điều kiện lý tưởng, khi bỏ qua các yếu tố phi tuyến và lực cản, phương trình chuyển động của hệ có nghiệm giải tích tường minh dưới dạng các hàm sin hoặc cos, cho phép xác định dễ dàng các đại lượng đặc trưng như tần số riêng, biên độ và pha dao động. Mô hình này đóng vai trò nền tảng trong việc nghiên cứu nhiều hệ vật lý, từ cơ học đến điện học và quang học.
+
+Tuy nhiên, trong các hệ thực tế, giả thiết tuyến tính thường không còn đúng khi biên độ dao động đủ lớn hoặc khi tồn tại các tương tác phức tạp hơn trong hệ. Khi đó, lực phục hồi không còn tỉ lệ bậc nhất với li độ mà xuất hiện các số hạng phi tuyến. Sự phi tuyến này làm thay đổi đáng kể đặc trưng động lực học của hệ, dẫn đến các hiện tượng như lệch tần số, biến dạng dạng sóng và phụ thuộc của tần số vào biên độ. Các hệ dao động phi tuyến xuất hiện rộng rãi trong nhiều lĩnh vực như cơ học kết cấu, điện tử phi tuyến và vật lý chất rắn.
+
+Đồng thời, khi hệ chịu tác dụng của lực ngoài tuần hoàn, hiện tượng cộng hưởng trở nên phức tạp hơn so với trường hợp tuyến tính. Ngoài ra, sự hiện diện của lực cản môi trường, đặc biệt là ma sát nhớt tỉ lệ với vận tốc, làm cho dao động của hệ bị tắt dần theo thời gian. Tùy thuộc vào độ lớn của hệ số ma sát, hệ có thể rơi vào các chế độ tắt dần khác nhau như tắt dần yếu, tắt dần tới hạn hoặc tắt dần mạnh.
+
+Khi kết hợp đồng thời các yếu tố phi tuyến, lực cưỡng bức và lực cản, phương trình chuyển động của hệ trở thành một phương trình vi phân phi tuyến mà trong hầu hết các trường hợp không thể giải bằng phương pháp giải tích.
+
+Để khảo sát đặc trưng của hệ, báo cáo này tiếp cận bài toán bằng cách xây dựng phương trình chuyển động tổng quát dưới dạng phương trình vi phân thường và giải bằng phương pháp số Runge–Kutta bậc 4. Cụ thể, hệ được mô tả với lực ngoài tuần hoàn:
+\begin{equation}
+    F_{\mathrm{ext}}(t) = F_0 \sin(\omega t)
+\end{equation}
+lực ma sát nhớt:
+\begin{equation}
+    f=-bv
+\end{equation}
+và tần số riêng của hệ tuyến tính:
+\begin{equation}
+    \omega_0=\sqrt{\frac{k}{m}}
+\end{equation}
+
+Trên cơ sở đó, nghiên cứu tập trung phân tích ảnh hưởng của các tham số như tần số kích thích, hệ số phi tuyến và hệ số ma sát lên đáp ứng của hệ, đặc biệt trong vùng gần cộng hưởng. Kết quả thu được góp phần làm rõ sự khác biệt giữa dao động tuyến tính và phi tuyến, cũng như các hiện tượng đặc trưng như biến dạng dạng sóng, lệch pha và sự thay đổi điều kiện cộng hưởng.

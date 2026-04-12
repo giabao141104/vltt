@@ -1,0 +1,14 @@
+\subsection{Tính phi tuyến và sự phá vỡ tính đối xứng}
+Dựa trên kết quả Hình~\ref{osc_alpha}, ta thấy tính phi tuyến trong thế năng ($V \sim x^3$) dẫn đến lực phục hồi $F_k$ không còn tỉ lệ thuận đơn thuần với ly độ. Số hạng $k\alpha x^2$ đóng vai trò làm yếu lực phục hồi khi vật ở phía dương ($x > 0$), khiến quỹ đạo bị biến dạng đáng kể so với mô hình dao động tử điều hòa lý tưởng. Đây là ví dụ điển hình của mô hình lò xo mềm trong cơ học thực tế.
+
+\subsection{Ý nghĩa kỹ thuật của ma sát và cộng hưởng}
+Hiện tượng cộng hưởng trong Hình~\ref{osc_omega} nhấn mạnh tầm quan trọng của việc tính toán tần số riêng trong thiết kế công trình. Nếu không có ma sát đủ lớn để triệt tiêu năng lượng, biên độ tăng vọt có thể dẫn đến phá hủy cấu trúc. 
+
+Đồng thời, chế độ tới hạn (Hình~\ref{osc_viscous}) được xác định là trạng thái tối ưu cho các thiết kế giảm xóc cơ khí. Việc giải số cho phép ta xác định chính xác giá trị hệ số $b$ cần thiết để hệ thống hoạt động ổn định nhất mà không cần thông qua các phép thử thực nghiệm tốn kém.
+
+Bên cạnh đó, việc xem xét mô hình ma sát động học (Hình~\ref{osc_kinetic}) mang lại cái nhìn thực tiễn hơn về sự tương tác của hệ thống với môi trường. Đặc biệt, với các số mũ n khác nhau, ta có thể mô phỏng chính xác sức cản không khí hoặc các môi trường có độ nhớt thay đổi theo vận tốc.
+
+Việc kết hợp cả hai mô hình ma sát thông qua phương pháp giải số RK4 cho phép các kỹ sư xác định chính xác các tham số thiết kế để tối ưu hóa khả năng hấp thụ chấn động và bảo vệ công trình trước các tác động ngoại lực phức tạp mà không cần dựa hoàn toàn vào các thử nghiệm thực nghiệm tốn kém.
+
+\subsection{Hiệu quả của phương pháp số RK4}
+Thuật toán RK4 đã chứng minh được độ chính xác và tính ổn định cao trong bài toán này. Đặc biệt trong Hình~\ref{osc_full}, khi hệ trở nên phức tạp và khó có nghiệm giải tích, phương pháp số là công cụ duy nhất giúp ta dự đoán được hành vi của hệ thống trong dài hạn, từ giai đoạn quá độ đến trạng thái xác lập.

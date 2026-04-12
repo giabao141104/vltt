@@ -1,0 +1,117 @@
+\subsection{Phương trình động lực học tổng quát}
+Hệ dao động được khảo sát bao gồm một vật khối lượng m gắn vào lò xo, chịu tác động đồng thời của lực đàn hồi, lực cản và ngoại lực cưỡng bức. Theo định luật II Newton, phương trình chuyển động được mô tả bởi
+\begin{equation}
+    m\frac{d^2x}{dt^2}= F_k(x) + F_{\text{ext}}(x,t) + f_{\text{viscous}} + f_{\text{kinetic}}
+\end{equation}
+Trong đó
+\begin{itemize}
+    \item $x$ là li độ của vật tại thời điểm t.
+    \item $F_k(x)$ là lực đàn hồi phi tuyến.
+    \item $F_{ext}(x,t)$ là ngoại lực tác động theo thời gian.
+    \item $f_{\text{viscous}}$ là ma sát nhớt.
+    \item $f_{\text{kinetic}}$ là ma sát nhớt động học.
+\end{itemize}
+
+\subsection{Mô hình lực đàn hồi phi tuyến}
+Điểm khác biệt của dao động điều hòa và dao động phi tuyến thường nằm ở dạng thế năng $V(x)$. Ta khảo sát hai trường hợp chính.
+Trường hợp thứ nhất, thế năng bậc cao (tương ứng với lực $F_k$) có thêm số hạng bậc 3 theo x
+    \begin{equation}
+        V(x)=\frac{1}{2}kx^2(1-\frac{2}{3}\alpha x)
+    \end{equation}
+có lực đàn hồi tương ứng
+\begin{equation}
+    F_k=-\frac{dV(x)}{dx}=-kx+k\alpha x^2 
+\end{equation}
+Trường hợp thứ hai là thế năng tổng quát, mở rộng cho các bậc $p \ge 2$ để khảo sát các hệ phi tuyến phức tạp hơn
+\begin{equation}
+    V(x)=\frac{1}{p}kx^p
+\end{equation}
+
+\subsection{Lực cưỡng bức và các cơ chế tiêu tán năng lượng}
+Sự tiêu tán năng lượng là yếu tố không thể tránh khỏi do tác động của môi trường trong các hệ dao động thực tế. Thành phần này là ma sát nhớt, mô tả thông qua biểu thức 
+\begin{equation}
+    f_v=-bv
+\end{equation}
+Trong đó lực cản tỉ lệ thuận với vận tốc $v$ nhưng ngược chiều chuyển động. Tùy thuộc vào giá trị của b so với tần số riêng của hệ, ta có thể quan sát được ba trạng thái động lực học khác nhau: cản dưới hạn ($b<2m\omega_0$), cản tới hạn ($b=2m\omega_0$), cản quá hạn ($b>2m\omega_0$).
+\\
+\\
+Song song với quá trình tiêu tán, để nghiên cứu sự duy trì dao động của hệ phi tuyến, một ngoại lực có dạng điều hòa
+\begin{equation}
+    F_{ext}(t) = F_0\sin(\omega t)
+\end{equation}
+được thiết lập dọc theo phương chuyển động. Việc điều chỉnh tần số cưỡng bức
+\begin{equation}
+    \omega = \sqrt{\frac{k}{m}}
+\end{equation}
+là cơ sở để khảo sát tính phi tuyến của hệ thông qua sự biến đổi của biên độ và pha. Ngoài ra, mô hình còn có thể mở rộng với lực ma sát động, tổng quát có dạng
+\begin{equation}
+    \mathbf{f}=-km|v|^n\frac{\mathbf{v}}{v}
+\end{equation}
+mô phỏng sự phụ thuộc phức tạp của lực cản vào lũy thừa bậc $n$ của vận tốc trong các môi trường có mật độ khác nhau.
+
+\subsection{Chuyển đổi sang hệ phương trình vi phân bậc nhất}
+Do thuật toán Runge--Kutta bậc 4 (RK4) được thiết kế để giải quyết hệ phương trình vi phân bậc nhất, phương trình động lực học bậc hai của hệ cần được thực hiện bước hạ bậc bằng cách đặt các biến trạng thái
+\begin{equation}
+\begin{cases}
+y_1(t) = x(t) \\[0.5em]
+y_2(t) = \dfrac{dx}{dt} 
+\end{cases}
+\end{equation}
+Khi đó, hệ phương trình vi phân bậc nhất mô tả trạng thái của hệ được viết lại dưới dạng vector
+\begin{equation}
+    \frac{d\mathbf{y}}{dt} = \mathbf{f}(t, \mathbf{y}) \notag
+\end{equation}
+Đặt $\mathbf{y} = [y_1, y_2]^T$ là vector trạng thái biểu diễn vị trí và vận tốc của vật, suy ra
+\begin{equation}
+    \mathbf{f}(t,\mathbf{y})
+    = \begin{bmatrix}
+      y_2 \\[0.5em]
+      \dfrac{1}{m} \left( F_k + F_{\text{viscous}} + F_{\text{kinetic}} + F_{\text{ext}} \right)
+    \end{bmatrix}
+    \label{eq:sol}
+\end{equation}
+
+\subsection{Phương pháp Runge--Kutta bậc 4}
+Để tìm nghiệm số cho hệ phương trình (\ref{eq:sol}), miền thời gian $[a,b]$ được chia thành $N$ khoảng nhỏ với bước nhảy
+\begin{equation}
+    h=\frac{b-a}{N} \notag
+\end{equation}
+Tại mỗi bước thời gian $t_i$, các hệ số trung gian được tính toán như sau
+\begin{equation*}
+\begin{aligned}
+\mathbf{k}_1 &= h \mathbf{f}(t_i, \mathbf{y}_i) \\
+\mathbf{k}_2 &= h\mathbf{f}\left(t_i + \frac{h}{2}, \mathbf{y}_i + \frac{\mathbf{k}_1}{2}\right) \\
+\mathbf{k}_3 &= h \mathbf{f}\left(t_i + \frac{h}{2}, \mathbf{y}_i + \frac{\mathbf{k}_2}{2}\right) \\
+\mathbf{k}_4 &= h \mathbf{f}(t_i + h, \mathbf{y}_i + \mathbf{k}_3)
+\end{aligned}
+\end{equation*}
+Nghiệm tại bước tiếp theo được cập nhật thông qua tổ hợp tuyến tính
+\begin{equation}
+    \mathbf{y}_{i+1} = \mathbf{y}_i + \frac{1}{6}(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4) \notag
+\end{equation}
+Thuật toán RK4 được thể hiện ở Thuật toán~\ref{alg:rk4}
+
+\begin{algorithm}
+\SetAlgoLined
+\KwIn{Hàm \(\mathbf{f}(t, \mathbf{U}) = \mathrm{d}\mathbf{U}/\mathrm{d}t\),
+  thời điểm bắt đầu \(t_i\),
+  thời điểm kết thúc \(t_f\),
+  điều kiện ban đầu \(\mathbf{U}_0 = (x,y,v_x,v_y)^{\top}\),
+  số bước lặp \(N\)}
+\KwOut{Mảng \(\mathbf{R}\) chứa giá trị ở mỗi bước lặp}
+\(h \leftarrow (b - a) / N\)\;
+\(t \leftarrow a\)\;
+\(\mathbf{U} \leftarrow \mathbf{U}_0\)\;
+\(\mathbf{R}(0) \leftarrow \mathbf{U}\)\;
+\For{\(i \leftarrow 1\) \KwTo \(N\)}{
+  \(\mathbf{k}_1 \leftarrow h \cdot \mathbf{f}(t, \mathbf{U})\)\;
+  \(\mathbf{k}_2 \leftarrow h \cdot \mathbf{f}(t + h/2, \mathbf{U} + \mathbf{k}_1/2)\)\;
+  \(\mathbf{k}_3 \leftarrow h \cdot \mathbf{f}(t + h/2, \mathbf{U} + \mathbf{k}_2/2\)\;
+  \(\mathbf{k}_4 \leftarrow h \cdot \mathbf{f}(t + h, \mathbf{U} + \mathbf{k}_3)\)\;
+  \(\mathbf{U} \leftarrow \mathbf{U} + \frac{1}{6}(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4)\)\;
+  \(t \leftarrow t + h\)\;
+  \(\mathbf{R}(i) \leftarrow \mathbf{U}\)\;
+}
+\Return{\textbf{R}}\;
+\caption{Phương pháp Runge--Kutta bậc 4}\label{alg:rk4}
+\end{algorithm}

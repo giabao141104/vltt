@@ -1,0 +1,40 @@
+Kết quả được thu thập thông qua việc khảo sát 4 kịch bản vật lý khác nhau, tương ứng với các thay đổi về cấu trúc lực của hệ thống.
+
+\subsection{Ảnh hưởng của tính phi tuyến}
+Khảo sát dao động tự do không ma sát với các giá trị $\alpha$ khác nhau ($0, 0.5, 0.9$). Thay vì dao động đối xứng qua trục $x$ như đường màu đen, các đường phi tuyến bị lệch hẳn về phía dương. Khi có thành phần phi tuyến, chu kỳ dao động không còn hằng định mà kéo dài ra so với hệ tuyến tính. (Hình~\ref{osc_alpha})
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{osc_alpha.png}
+    \caption{Hệ dao động với lực đàn hồi phi tuyến}\label{osc_alpha}
+\end{figure}
+
+\subsection{Hiện tượng cộng hưởng}
+Khảo sát hệ có ngoại lực là hàm tuần hoàn $F_{ext}(t) = F_0 \sin(\omega t)$. Khi tần số góc của ngoại lực $\omega$ tiến dần tới tần số góc riêng $\omega_0 = \sqrt{k/m}$, biên độ dao động tăng đột biến theo thời gian.  (Hình~\ref{osc_omega})
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{osc_omega.png}
+    \caption{Hệ dao động có ngoại lực theo hàm tuần hoàn}\label{osc_omega}
+\end{figure}
+
+\subsection{Khảo sát hệ có ma sát}
+Khi thêm lực cản nhớt $f_v = -bv$ vào hệ tuyến tính, ta thu được ba trạng thái đặc trưng:
+\begin{itemize}
+    \item \textbf{Underdamped ($b < 2m\omega_0$):} Biên độ giảm dần theo hàm mũ.
+    \item \textbf{Critically damped ($b = 2m\omega_0$):} Vật về vị trí cân bằng nhanh nhất mà không dao động.
+    \item \textbf{Overdamped ($b > 2m\omega_0$):} Vật về vị trí cân bằng rất chậm.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{osc_viscous.png}
+    \caption{Hệ dao động có ma sát nhớt}\label{osc_viscous}
+\end{figure}
+
+Tương tự, khi thêm lực ma sát động học vào hệ, ta thấy biên độ của hệ giảm dần về vị trí cân bằng
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{osc_kinetic.png}
+    \caption{Hệ dao động có ma sát động học}\label{osc_kinetic}
+\end{figure}
+
+\subsection{Hệ dao động tổng quát}
+Mô phỏng hệ kết hợp đầy đủ tính phi tuyến, ma sát và ngoại lực cưỡng bức. Đồ thị cho thấy giai đoạn quá độ không ổn định trước khi hệ đạt tới trạng thái dao động tuần hoàn. (Hình~\ref{osc_full})
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{osc_full.png}
+\caption{Hệ dao động tổng hợp}\label{osc_full}
+\end{figure}

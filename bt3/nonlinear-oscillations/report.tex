@@ -1,0 +1,96 @@
+\documentclass[
+	a4paper,
+	10pt,
+	unnumberedsections,
+	twoside,
+]{LTJournalArticle}
+
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{algorithm2e}
+
+\addbibresource{bibliography.bib}
+
+% \runninghead{Shortened Running Article Title}
+
+% \footertext{\textit{Journal of Biological Sampling} (2024) 12:533-684}
+
+\setcounter{page}{1}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{Mô phỏng dao động phi tuyến\\
+  bằng phương pháp Runge--Kutta bậc 4}
+
+\author{
+	Trần Đại Gia Bảo\textsuperscript{1},
+  Đặng Thị Mai Loan\textsuperscript{1},
+  Lê Thị Linh Nhi\textsuperscript{1},\\
+  Lương Thị Phương Trang\textsuperscript{1},
+  Mai Thị Thanh Trúc\textsuperscript{1}
+}
+
+% Affiliations are output in the \date{} command
+\date{\footnotesize\textsuperscript{\textbf{1}}Khoa Vật lý -- Vật lý kỹ thuật, Trường Đại học Khoa học Tự nhiên, Đại học Quốc gia Thành phố Hồ Chí Minh\\
+\texttt{\{23130089, 23130154, 23130184, 23130247, 23130251\}@student.hcmus.edu.vn}
+}
+
+% Full-width abstract
+\renewcommand{\maketitlehookd}{%
+	\begin{abstract}
+		\noindent Bài báo cáo trình bày việc áp dụng phương pháp Runge--Kutta bậc 4 (RK4) để giải hệ phương trình vi phân mô tả chuyển động dao động phi tuyến. Quá trình mô phỏng được thực hiện bằng lập trình, cho phép khảo sát sự biến thiên của các đại lượng theo thời gian. Kết quả thu được cho thấy phương pháp RK4 cho nghiệm ổn định và phản ánh rõ đặc trưng của dao động phi tuyến. Điều này khẳng định hiệu quả của phương pháp RK4 trong việc nghiên cứu các hệ động lực phức tạp.
+	\end{abstract}
+  {
+    \small\textbf{\textit{Từ khóa:}}
+    Runge--Kutta bậc 4, 
+    dao động phi tuyến,
+    phương trình vi phân
+  }
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Giới thiệu}
+\input{contents/introduction}
+
+%------------------------------------------------
+
+\section{Phương pháp}
+\input{contents/methods}
+%------------------------------------------------
+
+\section{Kết quả}
+\input{contents/results}
+
+%------------------------------------------------
+
+\section{Thảo luận}
+\input{contents/discussion}
+
+%------------------------------------------------
+
+\section{Kết luận}
+\input{contents/conclusion}
+
+%----------------------------------------------------------------------------------------
+%	 REFERENCES
+%----------------------------------------------------------------------------------------
+
+\nocite{*}
+\printbibliography
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
